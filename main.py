@@ -4,16 +4,15 @@ import time
 import os
 import curses
 
-r1 = 11
-r2 = 10
-m1 = 10
-m2 = 10
-m2 = 2
-a1 = m.radians(120)
+r1 = 11 #line 1 lentgh
+r2 = 10 #line 2 length
+m1 = 10 #mass of first ball
+m2 = 2 #mass of second ball
+a1 = m.radians(120) #Starting angles
 a2 = m.radians(70)
-a1_v = 0.0
+a1_v = 0.0 #velocities
 a2_v = 0.0
-g = 1
+g = 1     #force of gravity
 
 def show(c1, c2):
     global a1
@@ -39,8 +38,8 @@ def show(c1, c2):
         y1 - 30,
         x2 - 60,
         y2 - 30,
-        "{} d".format(round(m.degrees(a1), 2)),
-        "{} d".format(round(m.degrees(a2), 2)),
+        "{} d".format(round(m.degrees(a1), 2) % 360),
+        "{} d".format(round(m.degrees(a2), 2) % 360),
         round(a1_v, 2),
         round(a2_v, 2),
         ))
