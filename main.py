@@ -33,13 +33,13 @@ def show(c1, c2):
     for i in range(len(grid)):
         terminal.addstr(i, 0, ''.join(grid[i]))
     terminal.addstr(len(grid) + 1, 0,
-                    'P1: ({0: <3}, {1: <3}), P2: ({2: <3}, {3: <3}). a1: {4: <8}, a2: {5: <8}, a1_v: {6: <5}, a2_v: {7: <5}         '.format(
+                    'P1: ({0: <3}, {1: <3}), P2: ({2: <3}, {3: <3}). a1: {4}, a2: {5}, a1_v: {6: <5}, a2_v: {7: <5} '.format(
         x1 - 60,
         y1 - 30,
         x2 - 60,
         y2 - 30,
-        "{} d".format(round(m.degrees(a1), 2) % 360),
-        "{} d".format(round(m.degrees(a2), 2) % 360),
+        "{0: <6} d".format(round(m.degrees(a1), 2) % 360),
+        "{0: <6} d".format(round(m.degrees(a2), 2) % 360),
         round(a1_v, 2),
         round(a2_v, 2),
         ))
