@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import division
 import math as m
 import time
@@ -9,7 +8,7 @@ r1 = 11  # line 1 lentgh
 r2 = 10  # line 2 length
 m1 = 10  # mass of first ball
 m2 = 2  # mass of second ball
-a1 = m.radians(120)  # Starting angles
+a1 = m.radians(150)  # Starting angles
 a2 = m.radians(70)
 a1_v = 0.0  # velocities
 a2_v = 0.0
@@ -22,24 +21,33 @@ def show(c1, c2):
     global a1_v
     global a2_v
     global terminal
+    maxx = 81
+    maxy = 41
     (x1, y1) = c1
     (x2, y2) = c2
-    (o1, o2) = (60, 30)
-    (x1, y1, x2, y2) = (int(round(x1 + 60)), int(round(y1 + 30)),
-                        int(round(x2 + 60)), int(round(y2 + 30)))
-    grid = [[' ' for i in range(121)] for j in range(61)]
+    (o1, o2) = (40, 20)
+    (x1, y1, x2, y2) = (int(round(x1 + maxx // 2)), int(round(y1 + maxy
+                        // 2)), int(round(x2 + maxx // 2)),
+                        int(round(y2 + maxy // 2)))
+    grid = [[' ' for i in range(maxx)] for j in range(maxy)]
     grid[o2][o1] = 'O'
     grid[y1][x1] = 'X'
-    grid[y2][x2] = 'x'
+    if y2 > -1:
+        try:
+            grid[y2][x2] = 'x'
+        except:
+            pass
     grid = grid[::-1]
+    terminal.addstr(0, 0, '_' * (maxx + 1))
     for i in range(len(grid)):
-        terminal.addstr(i, 0, ''.join(grid[i]))
-    terminal.addstr(len(grid) + 1, 0,
+        terminal.addstr(i + 1, 0, '|' + ''.join(grid[i]) + '|')
+    terminal.addstr(len(grid) + 1, 0, '|' + '_' * maxx + '|')
+    terminal.addstr(len(grid) + 3, 0,
                     'P1: ({0: <3}, {1: <3}), P2: ({2: <3}, {3: <3}). a1: {4}, a2: {5}, a1_v: {6: <5}, a2_v: {7: <5} '.format(
-        x1 - 60,
-        y1 - 30,
-        x2 - 60,
-        y2 - 30,
+        x1 - maxx // 2,
+        y1 - maxy // 2,
+        x2 - maxx // 2,
+        y2 - maxy // 2,
         '{0: <6} d'.format(round(m.degrees(a1), 2) % 360),
         '{0: <6} d'.format(round(m.degrees(a2), 2) % 360),
         round(a1_v, 2),
