@@ -14,7 +14,6 @@ a1_v = 0.0  # velocities
 a2_v = 0.0
 g = 1  # force of gravity
 
-
 def show(c1, c2):
     global a1
     global a2
@@ -34,14 +33,20 @@ def show(c1, c2):
     grid[y1][x1] = 'X'
     if y2 > -1:
         try:
-            grid[y2][x2] = 'x'
+            grid[y2][x2] = 'X'
         except:
             pass
+    coords1 = list(bresenham(o1, o2, x1, y1))[1:-1]
+    coords2 = list(bresenham(x1, y1, x2, y2))[1:-1]
+    for i in coords1:
+        grid[i[1]][i[0]] = '*'
+    for i in coords2:
+        grid[i[1]][i[0]] = '*'
     grid = grid[::-1]
-    terminal.addstr(0, 0, '_' * (maxx + 1))
+    terminal.addstr(0, 0, '_' * maxx*2)
     for i in range(len(grid)):
-        terminal.addstr(i + 1, 0, '|' + ''.join(grid[i]) + '|')
-    terminal.addstr(len(grid) + 1, 0, '|' + '_' * maxx + '|')
+        terminal.addstr(i + 1, 0, '|' + ' '.join(grid[i]) + '|') # double spaces each row in grid, fixes scale but looks more choppy
+    terminal.addstr(len(grid) + 1, 0, '|' + '_' * (maxx * 2 - 1) + '|')
     terminal.addstr(len(grid) + 3, 0,
                     'P1: ({0: <3}, {1: <3}), P2: ({2: <3}, {3: <3}). a1: {4}, a2: {5}, a1_v: {6: <5}, a2_v: {7: <5} '.format(
         x1 - maxx // 2,
@@ -55,6 +60,27 @@ def show(c1, c2):
         ))
     terminal.refresh()
 
+def bresenham(x0, y0, x1, y1):
+    '''https://github.com/encukou/bresenham'''
+    dx = x1 - x0
+    dy = y1 - y0
+    xsign = 1 if dx > 0 else -1
+    ysign = 1 if dy > 0 else -1
+    dx = abs(dx)
+    dy = abs(dy)
+    if dx > dy:
+        xx, xy, yx, yy = xsign, 0, 0, ysign
+    else:
+        dx, dy = dy, dx
+        xx, xy, yx, yy = 0, ysign, xsign, 0
+    D = 2*dy - dx
+    y = 0
+    for x in range(dx + 1):
+        yield x0 + x*xx + y*yx, y0 + x*xy + y*yy
+        if D >= 0:
+            y += 1
+            D -= 2*dx
+        D += 2*dy
 
 terminal = curses.initscr()
 curses.noecho()
