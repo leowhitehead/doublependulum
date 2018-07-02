@@ -113,6 +113,9 @@ try:
         a2_v += a2_a
         a1 += a1_v
         a2 += a2_v
+except KeyboardInterrupt:
+    curses.endwin()
+    exit()
 except Exception, e:
     print e
     curses.endwin()
