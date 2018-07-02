@@ -7,3 +7,6 @@ Change starting angles, weights and lengths by modifying lines 7 through to 16
 
 credit to [encukou](https://github.com/encukou) for the python implementation of the bresenham algorithm that made this a lot easier.
 https://github.com/encukou/bresenham
+
+This project took the equations mostly from here:
+https://www.myphysicslab.com/pendulum/double-pendulum-en.html
