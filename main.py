@@ -4,7 +4,7 @@ import time
 import os
 import curses
 
-r1 = 11  # line 1 lentgh
+r1 = 11  # line 1 length
 r2 = 10  # line 2 length
 m1 = 10  # mass of first ball
 m2 = 2  # mass of second ball
@@ -25,8 +25,9 @@ def show(c1, c2):
     (x1, y1) = c1
     (x2, y2) = c2
     (o1, o2) = (40, 20)
-    (x1, y1, x2, y2) = (int(round(x1 + maxx // 2)), int(round(y1 + maxy
-                        // 2)), int(round(x2 + maxx // 2)),
+    (x1, y1, x2, y2) = (int(round(x1 + maxx // 2)), 
+                        int(round(y1 + maxy// 2)), 
+                        int(round(x2 + maxx // 2)),
                         int(round(y2 + maxy // 2)))
     grid = [[' ' for i in range(maxx)] for j in range(maxy)]
     grid[o2][o1] = 'O'
