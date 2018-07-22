@@ -2,14 +2,18 @@ from __future__ import division
 import math as m
 import time
 import os
+import sys
 import curses
 
 r1 = 11  # line 1 length
-r2 = 10  # line 2 length
+r2 = 9  # line 2 length
 m1 = 10  # mass of first ball
 m2 = 2  # mass of second ball
-a1 = m.radians(150)  # Starting angles
-a2 = m.radians(70)
+try:
+    a1, a2 = m.radians(float(sys.argv[1])), m.radians(float(sys.argv[2]))
+except IndexError:
+    a1 = m.radians(120)  # Starting angles
+    a2 = m.radians(80)
 a1_v = 0.0  # velocities
 a2_v = 0.0
 g = 1  # force of gravity
@@ -18,7 +22,7 @@ def show(c1, c2):
     global a1
     global a2
     global a1_v
-    global a2_v         #TODO: refactor to not use globals
+    global a2_v
     global terminal
     maxx = 81
     maxy = 41
