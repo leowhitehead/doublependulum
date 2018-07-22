@@ -18,7 +18,7 @@ def show(c1, c2):
     global a1
     global a2
     global a1_v
-    global a2_v
+    global a2_v         #TODO: refactor to not use globals
     global terminal
     maxx = 81
     maxy = 41
